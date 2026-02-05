@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Product</title>
+</head>
+<body>
+
+<div style="
+  width: 450px;
+  margin: 80px auto;
+  padding: 20px;
+  border: 1px solid black;
+">
+
+  <h2 style="text-align:center; margin-bottom:20px;">
+    Edit Product
+  </h2>
+
+  <form
+    method="POST"
+    action="/products/edit/<%= product.id %>"
+    style="display:flex; flex-direction:column; gap:12px;"
+  >
+    <input
+      type="text"
+      name="name"
+      value="<%= product.name %>"
+      required
+      style="padding:8px;"
+    />
+
+    <select
+      name="category_id"
+      required
+      style="padding:8px;"
+    >
+      <% categories.forEach(cat => { %>
+        <option
+          value="<%= cat.id %>"
+          <%= cat.id === product.category_id ? "selected" : "" %>
+        >
+          <%= cat.name %>
+        </option>
+      <% }) %>
+    </select>
+
+    <button
+      type="submit"
+      style="padding:8px; cursor:pointer;"
+    >
+      Update
+    </button>
+  </form>
+
+  
+  <div style="margin-top:15px; text-align:center;">
+    <a
+      href="/products"
+      style="text-decoration:none; padding:6px 12px; border:1px solid black;"
+    >
+      ← Back to Product List
+    </a>
+  </div>
+
+</div>
+
+</body>
+</html>

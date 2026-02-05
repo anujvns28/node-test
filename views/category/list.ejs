@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category List</title>
+</head>
+<body>
+
+<div style="margin:40px auto; width:800px; border:1px solid black; padding:20px;">
+
+  
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+    <h2>Category List</h2>
+
+    <div style="display:flex; gap:10px;">
+      <a 
+      href="/products"
+         style="padding:6px 12px; border:1px solid black; text-decoration:none;">
+        View Products
+      </a>
+
+      <a href="/categories/add"
+         style="padding:6px 12px; border:1px solid black; text-decoration:none;">
+        Add Category
+      </a>
+    </div>
+  </div>
+
+  <!-- Category  -->
+  <table
+    border="1"
+    cellpadding="8"
+    style="border-collapse:collapse; width:100%;"
+  >
+    <tr>
+      <th>Category ID</th>
+      <th>Category Name</th>
+      <th>Action</th>
+    </tr>
+
+    <% categories.forEach(cat => { %>
+      <tr>
+        <td><%= cat.id %></td>
+        <td><%= cat.name %></td>
+        <td>
+          <a href="/categories/edit/<%= cat.id %>">Edit</a>
+          |
+          <a href="/categories/delete/<%= cat.id %>">Delete</a>
+        </td>
+      </tr>
+    <% }) %>
+
+  </table>
+
+</div>
+
+</body>
+</html>

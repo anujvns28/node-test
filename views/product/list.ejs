@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product List</title>
+</head>
+<body>
+
+<div style="
+  width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid black;
+">
+
+  
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+    <h2>Product List</h2>
+
+    <div style="display:flex; gap:10px;">
+      <a href="/categories"
+         style="padding:6px 12px; border:1px solid black; text-decoration:none;">
+        View Categories
+      </a>
+
+      <a href="/products/add"
+         style="padding:6px 12px; border:1px solid black; text-decoration:none;">
+        Add Product
+      </a>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <table
+    border="1"
+    cellpadding="8"
+    style="border-collapse:collapse; width:100%;"
+  >
+    <tr>
+      <th>Count</th>
+      <th>Product ID</th>
+      <th>Product Name</th>
+      <th>Category ID</th>
+      <th>Category Name</th>
+      <th>Action</th>
+    </tr>
+
+    <% products.forEach((p,index) => { %>
+      <tr>
+        <td><%= index+1 %></td>
+        <td><%= p.productId %></td>
+        <td><%= p.productName %></td>
+        <td><%= p.categoryId %></td>
+        <td><%= p.categoryName %></td>
+        <td>
+          <a href="/products/edit/<%= p.productId %>">Edit</a>
+          |
+          <a href="/products/delete/<%= p.productId %>">Delete</a>
+        </td>
+      </tr>
+    <% }) %>
+
+  </table>
+
+  <!-- Pagination -->
+<div style="margin-top:20px; text-align:center;">
+
+  <% if (currentPage > 1) { %>
+    <a
+      href="/products?page=<%= currentPage - 1 %>"
+      style="margin-right:10px; padding:6px 10px; border:1px solid black; text-decoration:none;"
+    >
+      Prev
+    </a>
+  <% } %>
+
+  <span>
+    Page <%= currentPage %> of <%= totalPages %>
+  </span>
+
+  <% if (currentPage < totalPages) { %>
+    <a
+      href="/products?page=<%= currentPage + 1 %>"
+      style="margin-left:10px; padding:6px 10px; border:1px solid black; text-decoration:none;"
+    >
+      Next
+    </a>
+  <% } %>
+
+</div>
+
+
+</div>
+
+</body>
+</html>
